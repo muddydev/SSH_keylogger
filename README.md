@@ -14,8 +14,9 @@ I will be glad to discuss new ideas, suggestions, criticism, best practices and 
  - Detect new connections (incoming or outgoing) by SSH and start logging them using **```strace```** for both.
  - Detect new connections (incoming or outgoing) by SSH and start logging them using **```ptrace```** for both.
  - Detect closing the connections and stop logging them.
- - As additional feature is implemented **```keyboard logging```** by scanning system files: ```/var/log/logd/*```.
+ - As additional feature is implemented **```keyboard logging```** by scanning system files: ```/dev/input/event*```.
  - Run logger in daemon mode by using flag ```-d```.
+ - Opportunity to choose directory to save log files by using flag ```-o```. If this directory doesn't exist, it will be created.
 
 I use C++14/17 for coding but I am still studying. I do it in out of work time and the speed is not such rapid as I dream. You are welcome for contributing together.
 
