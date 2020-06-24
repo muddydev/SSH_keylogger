@@ -10,7 +10,7 @@ FIND_PACKAGE(Boost 1.65 REQUIRED COMPONENTS filesystem regex program_options)
 
 add_definitions(-DDEBUG=0)
 
-add_executable(keylogger src/main.cpp includes/config.hpp)
+add_executable(keylogger src/main.cpp src/strace.cpp src/ptrace.cpp src/parsing.cpp src/tracer.cpp src/keylogger.cpp src/keyboard.cpp src/process.cpp)
 target_include_directories(keylogger PUBLIC includes)
 target_link_libraries(keylogger pthread Boost::regex Boost::filesystem Boost::program_options)
 

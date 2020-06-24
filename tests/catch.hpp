@@ -10359,7 +10359,7 @@ namespace Catch {
         // this process itself to still allow attaching to this process later
         // if wanted, so is rather heavy. Under Linux we have the PID of the
         // "debugger" (which doesn't need to be gdb, of course, it could also
-        // be strace, for example) in /proc/$PID/status, so just get it from
+        // be Strace, for example) in /proc/$PID/status, so just get it from
         // there instead.
         bool isDebuggerActive(){
             // Libstdc++ has a bug, where std::ifstream sets errno to 0
